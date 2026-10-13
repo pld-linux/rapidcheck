@@ -1,0 +1,77 @@
+--- rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/CMakeLists.txt.orig	2026-08-06 10:52:07.000000000 +0200
++++ rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/CMakeLists.txt	2026-10-01 18:58:57.540658267 +0200
+@@ -126,7 +126,7 @@ export(EXPORT rapidcheckConfig FILE rapi
+ set(PKG_CONFIG_REQUIRES)
+ set(PKG_CONFIG_DESCRIPTION_SUMMARY "C++ framework for property based testing inspired by QuickCheck and other similar frameworks")
+ set(PKG_CONFIG_VERSION)
+-set(PKG_CONFIG_LIBDIR "\${prefix}/lib")
++set(PKG_CONFIG_LIBDIR "\${prefix}/lib${LIB_SUFFIX}")
+ set(PKG_CONFIG_INCLUDEDIR "\${prefix}/include")
+ set(PKG_CONFIG_LIBS)
+ set(PKG_CONFIG_CFLAGS "-I\${includedir}")
+--- rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/extras/boost/CMakeLists.txt.orig	2026-08-06 10:52:07.000000000 +0200
++++ rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/extras/boost/CMakeLists.txt	2026-10-01 18:58:57.540658267 +0200
+@@ -19,7 +19,7 @@ endif()
+ set(PKG_CONFIG_REQUIRES "rapidcheck")
+ set(PKG_CONFIG_DESCRIPTION_SUMMARY "boost headers for rapidcheck")
+ set(PKG_CONFIG_VERSION)
+-set(PKG_CONFIG_LIBDIR "\${prefix}/lib")
++set(PKG_CONFIG_LIBDIR "\${prefix}/lib${LIB_SUFFIX}")
+ set(PKG_CONFIG_INCLUDEDIR "\${prefix}/include")
+ set(PKG_CONFIG_LIBS)
+ set(PKG_CONFIG_CFLAGS "-I\${includedir}")
+--- rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/extras/boost_test/CMakeLists.txt.orig	2026-08-06 10:52:07.000000000 +0200
++++ rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/extras/boost_test/CMakeLists.txt	2026-10-01 18:58:57.540658267 +0200
+@@ -15,7 +15,7 @@ install(DIRECTORY include/ DESTINATION $
+ set(PKG_CONFIG_REQUIRES "rapidcheck")
+ set(PKG_CONFIG_DESCRIPTION_SUMMARY "boost_test headers for rapidcheck")
+ set(PKG_CONFIG_VERSION)
+-set(PKG_CONFIG_LIBDIR "\${prefix}/lib")
++set(PKG_CONFIG_LIBDIR "\${prefix}/lib${LIB_SUFFIX}")
+ set(PKG_CONFIG_INCLUDEDIR "\${prefix}/include")
+ set(PKG_CONFIG_LIBS)
+ set(PKG_CONFIG_CFLAGS "-I\${includedir}")
+--- rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/extras/catch/CMakeLists.txt.orig	2026-08-06 10:52:07.000000000 +0200
++++ rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/extras/catch/CMakeLists.txt	2026-10-01 18:58:57.540658267 +0200
+@@ -15,7 +15,7 @@ install(DIRECTORY include/ DESTINATION $
+ set(PKG_CONFIG_REQUIRES "rapidcheck")
+ set(PKG_CONFIG_DESCRIPTION_SUMMARY "catch headers for rapidcheck")
+ set(PKG_CONFIG_VERSION)
+-set(PKG_CONFIG_LIBDIR "\${prefix}/lib")
++set(PKG_CONFIG_LIBDIR "\${prefix}/lib${LIB_SUFFIX}")
+ set(PKG_CONFIG_INCLUDEDIR "\${prefix}/include")
+ set(PKG_CONFIG_LIBS)
+ set(PKG_CONFIG_CFLAGS "-I\${includedir}")
+--- rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/extras/doctest/CMakeLists.txt.orig	2026-08-06 10:52:07.000000000 +0200
++++ rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/extras/doctest/CMakeLists.txt	2026-10-01 18:58:57.540658267 +0200
+@@ -15,7 +15,7 @@ install(DIRECTORY include/ DESTINATION $
+ set(PKG_CONFIG_REQUIRES "rapidcheck")
+ set(PKG_CONFIG_DESCRIPTION_SUMMARY "doctest headers for rapidcheck")
+ set(PKG_CONFIG_VERSION)
+-set(PKG_CONFIG_LIBDIR "\${prefix}/lib")
++set(PKG_CONFIG_LIBDIR "\${prefix}/lib${LIB_SUFFIX}")
+ set(PKG_CONFIG_INCLUDEDIR "\${prefix}/include")
+ set(PKG_CONFIG_LIBS)
+ set(PKG_CONFIG_CFLAGS "-I\${includedir}")
+--- rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/extras/gmock/CMakeLists.txt.orig	2026-08-06 10:52:07.000000000 +0200
++++ rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/extras/gmock/CMakeLists.txt	2026-10-01 18:58:57.540658267 +0200
+@@ -19,7 +19,7 @@ endif()
+ set(PKG_CONFIG_REQUIRES "rapidcheck")
+ set(PKG_CONFIG_DESCRIPTION_SUMMARY "gmock headers for rapidcheck")
+ set(PKG_CONFIG_VERSION)
+-set(PKG_CONFIG_LIBDIR "\${prefix}/lib")
++set(PKG_CONFIG_LIBDIR "\${prefix}/lib${LIB_SUFFIX}")
+ set(PKG_CONFIG_INCLUDEDIR "\${prefix}/include")
+ set(PKG_CONFIG_LIBS)
+ set(PKG_CONFIG_CFLAGS "-I\${includedir}")
+--- rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/extras/gtest/CMakeLists.txt.orig	2026-08-06 10:52:07.000000000 +0200
++++ rapidcheck-6e8dadfdafa3a74eabb52ead87f8787f72eccd0b/extras/gtest/CMakeLists.txt	2026-10-01 18:58:57.540658267 +0200
+@@ -15,7 +15,7 @@ install(DIRECTORY include/ DESTINATION $
+ set(PKG_CONFIG_REQUIRES "rapidcheck")
+ set(PKG_CONFIG_DESCRIPTION_SUMMARY "gtest headers for rapidcheck")
+ set(PKG_CONFIG_VERSION)
+-set(PKG_CONFIG_LIBDIR "\${prefix}/lib")
++set(PKG_CONFIG_LIBDIR "\${prefix}/lib${LIB_SUFFIX}")
+ set(PKG_CONFIG_INCLUDEDIR "\${prefix}/include")
+ set(PKG_CONFIG_LIBS)
+ set(PKG_CONFIG_CFLAGS "-I\${includedir}")

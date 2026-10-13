@@ -2,23 +2,18 @@ Summary:	RapidCheck - C++ framework for property based testing
 Summary(pl.UTF-8):	RapidCheck - szkielet C++ do testowania opartego na własnościach
 Name:		rapidcheck
 Version:	0
-%define	gitref	1505cbbce733bde3b78042cf2e9309c0b7f227a2
-%define	snap	20230114
+%define	gitref	2c3c4365aca21ef4e612768fdc95b1ce8b39a651
+%define	snap	20261006
 %define	rel	1
 Release:	0.%{snap}.%{rel}
 License:	BSD
 Group:		Libraries
 Source0:	https://github.com/emil-e/rapidcheck/archive/%{gitref}/%{name}-%{snap}.tar.gz
-# Source0-md5:	be5af76d09734665f2e1962539f23a58
-# 03d122a is v2.4.2 tag
-%define	catch_ver	2.4.2
-Source1:	https://github.com/catchorg/Catch2/archive/v%{catch_ver}/Catch2-%{catch_ver}.tar.gz
-# Source1-md5:	26927b878b1f42633f15a9ef1c4bd8e7
-%define	gtest_gitref	e38ef3be887afc0089005e394c5001002e313960
-Source2:	https://github.com/google/googletest/archive/%{gtest_gitref}/googletest-%{gtest_gitref}.tar.gz
-# Source2-md5:	ed4d7fc957e9cdd07af56926676ebd8d
+# Source0-md5:	d1a5501ba28881f943de90cab5c87e11
+Patch0:		%{name}-system-libs.patch
+Patch1:		%{name}-pc.patch
 URL:		https://github.com/emil-e/rapidcheck
-BuildRequires:	cmake >= 3.0
+BuildRequires:	cmake >= 3.16
 BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -50,7 +45,7 @@ liczbę całkowitą, dla którego własność nie jest spełniona.
 Summary:	Header files for RapidCheck library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki RapidCheck
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}%{?_isa} = %{version}-%{release}
 Requires:	libstdc++-devel >= 6:4.7
 
 %description devel
@@ -61,19 +56,17 @@ Pliki nagłówkowe biblioteki RapidCheck.
 
 %prep
 %setup -q -n %{name}-%{gitref}
-
-tar xf %{SOURCE1} -C ext/catch --strip-components=1
-tar xf %{SOURCE2} -C ext/googletest --strip-components=1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
-install -d build
-cd build
-%cmake .. \
+%cmake -B build \
 	-DRC_ENABLE_CATCH=ON \
+	-DRC_ENABLE_DOCTEST=ON \
 	-DRC_ENABLE_GMOCK=ON \
 	-DRC_ENABLE_GTEST=ON
 
-%{__make}
+%{__make} -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -90,12 +83,16 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc LICENSE.md README.md
-%attr(755,root,root) %{_libdir}/librapidcheck.so
+%{_libdir}/librapidcheck.so
 
 %files devel
 %defattr(644,root,root,755)
 %doc doc/*.md
 %{_includedir}/rapidcheck
 %{_includedir}/rapidcheck.h
+%{_pkgconfigdir}/rapidcheck.pc
+%{_pkgconfigdir}/rapidcheck_catch.pc
+%{_pkgconfigdir}/rapidcheck_doctest.pc
+%{_pkgconfigdir}/rapidcheck_gtest.pc
 %dir %{_datadir}/rapidcheck
 %{_datadir}/rapidcheck/cmake
